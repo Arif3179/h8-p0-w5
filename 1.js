@@ -15,22 +15,21 @@ Format Uang (KBBI)
 */
 
 function formatUang(number) {
- var stringNumber = number.toString()
- if(stringNumber.length <= 3){
-   return "Rp"+stringNumber+",00"
- } else if(stringNumber.length > 3 && stringNumber.length <= 6){
-   var diSplit = stringNumber.split("")
-   diSplit.splice(stringNumber.length - 3,0,'.')
-   var hasil = diSplit.join("")
-   return "Rp"+hasil+",00"
- } else if(stringNumber.length >6 && stringNumber.length <=9){
-  var diSplit = stringNumber.split("")
-  diSplit.splice(stringNumber.length-6,0,'.')
-  diSplit.splice((stringNumber.length-6)+4,0,'.')
-  var hasil = diSplit.join("")
-  return "Rp"+hasil+",00"
- }
 
+var stringNumber = number.toString()
+var temp1 = ""
+var hitung = 1
+for(let i = stringNumber.length -1; i >= 0; i--){
+  temp1 += stringNumber[i]
+  if(hitung%3 == 0 && i != 0){
+    temp1 = temp1 + "."
+  }
+  hitung +=1
+}
+var hasil = ""
+  for(let j=temp1.length-1;j >= 0;j--){
+  hasil = hasil + temp1[j]
+  } return hasil
 }
 
  
